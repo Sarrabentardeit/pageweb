@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scraping Tool</title>
+</head>
+<body>
+  <h2>Entrez l'URL du site à scraper :</h2>
+  <input type="text" id="url" placeholder="https://example.com">
+  <button onclick="scrapeData()">Scraper</button>
+
+  <script>
+    async function scrapeData() {
+      const url = document.getElementById("url").value;
+      if (!url) return alert("Veuillez entrer une URL valide.");
+
+      const response = await fetch('/scrape', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url })
+      });
+
+      const data = await response.json();
+      console.log(data); // Affichez les résultats
+    }
+
+  </script>
+</body>
+</html>
